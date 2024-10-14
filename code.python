@@ -1,0 +1,89 @@
+import pandas as pd
+
+# load the first dataset
+
+df1 = pd.read_csv('dataset1.csv')
+
+# load the second dataset
+
+df2 = pd.read_csv('dataset2.csv')
+
+# specify the common column for merging
+
+common_column = 'id'
+
+# merge the two datasets on the 'id' column
+
+merged_df = pd.merge(df1, df2, on=common_column)
+
+# specify the condition for filtering rows where 'score' is greater than 50
+
+score_column = 'score'
+
+score_threshold = 50
+
+condition = merged_df[score_column] > score_threshold
+
+# apply the filter condition to the merged dataframe
+
+filtered_df = merged_df[condition]
+
+# specify the column to sort by
+
+sort_column = 'name'
+
+# sort the filtered dataframe by the 'name' column
+
+sorted_df = filtered_df.sort_values(by=sort_column)
+
+# specify the columns to be selected for reshaping
+
+id_column = 'id'
+
+name_column = 'name'
+
+score_column = 'score'
+
+# select the 'id' column from the sorted dataframe
+
+id_selected = sorted_df[id_column]
+
+# select the 'name' column from the sorted dataframe
+
+name_selected = sorted_df[name_column]
+
+# select the 'score' column from the sorted dataframe
+
+score_selected = sorted_df[score_column]
+
+# create an empty dataframe to hold the selected columns
+
+reshaped_df = pd.dataframe()
+
+# add the selected 'id' column to the reshaped dataframe
+
+reshaped_df[id_column] = id_selected
+
+# add the selected 'name' column to the reshaped dataframe
+
+reshaped_df[name_column] = name_selected
+
+# add the selected 'score' column to the reshaped dataframe
+
+reshaped_df[score_column] = score_selected
+
+# specify the output file name for saving the reshaped dataframe
+
+output_file = 'transformed_dataset.csv'
+
+# save the reshaped dataframe to a csv file without including the index
+
+reshaped_df.to_csv(output_file, index=false)
+
+# prepare the success message to print
+
+success_message="datasettransformation complete and saved as 'transformed_dataset.csv'"
+
+# print the success message
+
+print(success_message)
